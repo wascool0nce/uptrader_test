@@ -1,0 +1,16 @@
+<ul>
+    {% for item in items %}
+        <li class="{% if item in active_items %}active{% endif %}">
+            <a href="{{ item.get_url }}">{{ item.name }}</a>
+            {% if item.children.exists %}
+                <ul>
+                    {% for child in item.children.all %}
+                        <li>
+                            <a href="{{ child.get_url }}">{{ child.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
